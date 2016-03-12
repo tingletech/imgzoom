@@ -17,7 +17,8 @@ $(document).ready(function() {
       zoomInButton: 'obj__osd-button-zoom-in',
       zoomOutButton: 'obj__osd-button-zoom-out',
       homeButton: 'obj__osd-button-home',
-      fullPageButton: 'obj__osd-button-fullscreen'
+      fullPageButton: 'obj__osd-button-fullscreen',
+      prefixUrl: '/imgzoom/images/'
     });
     console.log(viewer);
   })
