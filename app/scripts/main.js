@@ -6,12 +6,22 @@ function zarkToKey(zark) {
   return park[1] + '-' + park[2] + '-' + park[3] + '.jp2';
 }
 
+function zarkToFrame(zark) {
+  var park = zark.split('/');
+  var url = 'http://content.cdlib.org/ark:/' + park[1] + '/' + park[2];
+  url = url + '/?order=' + park[3].slice(1) + ';layout=iframe';
+  return url;
+}
+
 $(document).ready(function() {
   var zark = parseUri(window.location).queryKey.ark;
+  if (typeof zark === 'undefined') {
+    return;
+  }
   var url = 'http://pottoloris-env.elasticbeanstalk.com/' + zarkToKey(zark);
   url = url + '/info.json';
   $.ajax(url).done(function(tiles) {
-    var viewer = new OpenSeadragon({
+    var x = new OpenSeadragon({
       id: 'obj__osd',
       tileSources: tiles,
       zoomInButton: 'obj__osd-button-zoom-in',
@@ -20,7 +30,15 @@ $(document).ready(function() {
       fullPageButton: 'obj__osd-button-fullscreen',
       prefixUrl: '/imgzoom/images/'
     });
-    console.log(viewer);
+    void x; // jshint hack
+    $('<iframe>', {
+      src: zarkToFrame(zark),
+      id: 'myFrame',
+      height: '100%',
+      width: '100%',
+      frameborder: 0,
+      style: 'overflow:hidden;height:100%;width:100%'
+    }).appendTo('#metadata');
   })
   .fail(function() {
     console.log('error');

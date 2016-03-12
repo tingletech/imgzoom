@@ -11,6 +11,18 @@
 
     <link rel="stylesheet" href="//calisphere.org/static_root/styles/main.css">
 
+    <style> /* http://stackoverflow.com/a/27853830/1763984 */
+body {
+    margin: 0;            /* Reset default margin */
+}
+iframe {
+    display: block;       /* iframes are inline by default */
+    border: none;         /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    width: 100vw;
+}
+    </style>
+
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -31,6 +43,7 @@
       </div>
 
     </div>
+    <div id="metadata"> </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
