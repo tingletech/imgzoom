@@ -48,14 +48,7 @@ $(document).ready(function() {
       prefixUrl: '/imgzoom/images/'
     });
     void x; // jshint hack
-    $('<iframe>', {
-      src: zarkToFrame(zark),
-      id: 'myFrame',
-      height: '100%',
-      width: '100%',
-      frameborder: 0,
-      style: 'overflow:hidden;height:100%;width:100%'
-    }).appendTo('#metadata');
+    $('#metadata').load(zarkToFrame(zark) + ' .metadata-text');
   })
   .fail(function() {
     console.log('error');
